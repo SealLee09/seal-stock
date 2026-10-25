@@ -103,6 +103,8 @@ input[type=search]{min-width:120px}
 .scard .rt .big{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:13px;font-weight:600}
 .scard .rt .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .hot{display:inline-block;width:7px;height:7px;border-radius:50%;vertical-align:middle}
+.hotl{font-family:var(--font-body);font-size:10px;font-weight:700;padding:1px 6px;border-radius:999px;vertical-align:middle;
+  background:var(--churn-tint);color:var(--churn);border:1px solid var(--churn)}
 .flag{font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:4px;background:var(--buy);color:#fff}
 .tflag{font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:4px;background:var(--trust);color:#fff}
 .wflag{font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:4px;background:var(--warn);color:#fff}
@@ -906,7 +908,7 @@ function stockList(){
       :sortKey==="flip"?`<div class="big" style="color:var(--warn)">${s.flip?s.flip.length:0}</div><div class="lbl">警訊</div>`
       :(Math.round(s.lead)>0?`<div class="big pos">+${Math.round(s.lead).toLocaleString()}</div><div class="lbl">地緣囤</div>`
         :`<div class="big zero">—</div><div class="lbl">地緣囤</div>`);
-    const hot=s.churn>20000?`<span class="hot" style="background:var(--churn)" title="當沖兇"></span>`:"";
+    const hot=s.churn>20000?`<span class="hotl" title="當沖對敲量超過 2 萬張,量價訊號要打折">當沖兇</span>`:"";
     const flag=(sortKey==="ambush"&&s.ambush)?`<span class="flag">吸貨不漲${s.maxStreak>=2?'·連'+s.maxStreak:''}</span>`:"";
     const tflag=(inst&&inst.trustStreak>=2)?`<span class="tflag">投信連買${inst.trustStreak}</span>`:"";
     const pxs=s.px?`<span class="${s.px.chg>=0?'pos':'neg'}">${pct(s.px.chg)}</span>`:"";
